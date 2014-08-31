@@ -5,6 +5,7 @@
                  [compojure "1.1.8"]
                  [selmer "0.6.9"]
                  [clj-http "1.0.0"]
+                 [clj-time "0.8.0"]
                  [cheshire "5.3.1"]]
 
   :plugins [[lein-ring "0.8.11"]]
