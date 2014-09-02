@@ -61,13 +61,11 @@
    (> n 0) "Positive"
    (= n 0) 0))
 
-(defn parse-date
-  [dt]
+(defn parse-date [dt]
   (let [obj (f/parse (f/formatters :date-time) dt)]
     (f/unparse (f/formatters :rfc822) obj)))
 
-(defn parse-reddit-date
-  [t]
+(defn parse-reddit-date [t]
   (let [dt (.replaceAll (.replaceAll (str t) "E9" "000") "[.]" "")]
     (f/unparse (f/formatters :rfc822) (c/from-long (Long. dt)))))
 
