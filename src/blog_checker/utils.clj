@@ -80,7 +80,7 @@
       "reddit had this story first!")))
 
 (defn get-stories []
-  (let [stories (client/get "http://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=3")]
+  (let [stories (client/get "http://hn.algolia.com/api/v1/search_by_date?tags=story&numericFilters=points>20&hitsPerPage=3")]
     (render-file "public/index.html" {:stories (get (parse-string (get stories :body) true) :hits)})))
 
 (add-filter! :reddit-date #(parse-reddit-date %))
