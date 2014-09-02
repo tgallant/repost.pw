@@ -38,7 +38,7 @@ Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve you
     <center><h2>{{posted_first}}</h2></center>
     <div class="row-fluid">
         <div class="col-md-6" style="padding-left:20px">
-            <h2>Hacker News</h2>
+            <p><a href="https://news.ycombinator.com"><img src="img/hn.png" width="50" alt="Hacker News!"></a></p>
             {% ifequal created_at sentiment %}
             <p>This link has not been posted to hacker news</p>
             {% else %}
@@ -52,7 +52,7 @@ Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve you
             {% endifequal %}
         </div>
         <div class="col-md-6" sytle="padding-right:20px">
-            <h2>Reddit</h2>
+            <p><a href="http://reddit.com"><img src="img/reddit.png" width="50" alt="Reddit!"></a></p>
             {% ifequal reddit-count "0" %}
             <p>This link has not been posted to reddit.</p>
             {% else %}
@@ -63,7 +63,7 @@ Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve you
                 <p><b>Title</b>: {{x.data.title}}</p>
                 <p><b>Author</b>: {{x.data.author}}</p>
                 <p><b>Subreddit</b>: {{x.data.subreddit}}</p>
-                <p><b>Score</b>: {{x.data.score}}</p>
+                <p><b>Net Upvotes</b>: {{x.data.score}}</p>
                 <p><b>Number of comments</b>: {{x.data.num_comments}}</p>
                 <p><a href="http://www.reddit.com{{x.data.permalink}}">Link to comments</a></p>
             </div>
