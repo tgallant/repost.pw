@@ -1,6 +1,8 @@
 # blog-checker
 
-FIXME
+This is a tool that helps track where links have been shared and how they have been recieved by the community.
+The reddit and hacker news APIs have been heavily utilized to track how links have been shared and sentiment analysis has been used to 
+measure community reception.
 
 ## Prerequisites
 
@@ -16,4 +18,4 @@ To start a web server for the application, run:
 
 ## License
 
-Copyright © 2014 FIXME
+Copyright © 2014 Tim Gallant and Chris Marin 

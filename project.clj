@@ -1,6 +1,6 @@
 (defproject blog-checker "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "social sharing/sentiment tool for hacker news and reddit"
+  :url "http://stats.timgallant.us"
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojurescript "0.0-2322"]
                  [compojure "1.1.8"]
@@ -19,9 +19,7 @@
                         :source-paths ["src"]
                         :compiler {
                                    :output-to "resources/public/js/main.js"
-                                   ;;:output-dir "resources/public/js/out"
                                    :optimizations :advanced
-                                   ;;:source-map true
                                    :pretty-print true}}]}
 
   :ring {:handler blog-checker.handler/app}
