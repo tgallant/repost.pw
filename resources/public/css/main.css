@@ -5,6 +5,10 @@ body {
   margin:auto;
 }
 
+.jumbotron h1 {
+  font-size: 35px;
+}
+
 .block {
   padding: 80px 0;
 }
@@ -82,3 +86,12 @@ body {
     border-bottom: 0;
   }
 }
+
+.container .jumbotron {
+border-radius: 2px;
+}
+
+.btn-lg, .btn-group-lg>.btn {
+border-radius: 4px;
+}
+
