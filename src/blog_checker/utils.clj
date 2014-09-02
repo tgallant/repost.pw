@@ -55,7 +55,7 @@
     (f/unparse (f/formatters :rfc822) obj)))
 
 (defn parse-reddit-date [t]
-  (let [dt (.replaceAll (.replaceAll (str t) "E9" "0000") "[.]" "")]
+  (let [dt (.replaceAll (.replaceAll (str t) "E9" "000") "[.]" "")]
     (f/unparse (f/formatters :rfc822) (c/from-long (Long. dt)))))
 
 (defn posted-first [hn reddit]
