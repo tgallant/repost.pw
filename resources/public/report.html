@@ -25,6 +25,7 @@ Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve you
     <!-- Add your site or application content here -->
     <div class="container">
         <div class="jumbotron">
+            <h1>Article lookup for HN and reddit</h1>
             <form role="form" method="post">
                 <div class="form-group">
                     <input class="form-control" type="URL" name="url" placeholder="Enter in you URL here" required autofocus>
@@ -56,7 +57,6 @@ Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve you
             <p>This link has not been posted to reddit.</p>
             {% else %}
             <p><b>Times posted to reddit</b>: {{reddit-count}}</p>
-            <!-- <p>{{reddit}}</p> -->
             {% for x in reddit %}
             <div>
                 <p><b>Created at</b>: {{x.data.created_utc|reddit-date}}</p>
@@ -72,7 +72,5 @@ Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve you
             {% endifequal %}
         </div>
     </div>
-</div>
-</div>
 </body>
 </html>
