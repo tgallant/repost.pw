@@ -3,14 +3,10 @@
             [compojure.handler :as handler]
             [compojure.route :as route]
             [ring.util.response :as resp]
-            [blog-checker.utils :refer [get-info]]))
+            [blog-checker.utils :refer [get-info get-stories]]))
 
 (defroutes app-routes
-  (GET "/" req
-       (-> (resp/resource-response "index.html" {:root "public"})
-           (resp/header "Cache-Control" "max-age=604800")
-           (resp/header "Vary" "Accept-Encoding")
-           (resp/header "Content-Type" "text/html; charset=utf-8")))
+  (GET "/" [] (get-stories))
   (POST "/" [url] (get-info url))
   (route/resources "/")
   (route/not-found "Not Found"))

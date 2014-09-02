@@ -28,7 +28,7 @@ Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve you
             <h1>Article lookup for HN and reddit</h1>
             <form role="form" method="post">
                 <div class="form-group">
-                    <input class="form-control" type="URL" name="url" placeholder="Enter URL here" required autofocus>
+                    <input class="form-control" id="inputForm" value="" type="URL" name="url" placeholder="Enter URL here" required autofocus>
                 </div>
                 <button class="btn btn-warning btn-lg" id="submit" type="submit">Search</button>
             </form>
@@ -41,15 +41,11 @@ Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve you
             </div>
         </div>
 
+        {% for x in stories %}
         <div class="col-xs-4 text-center">
-            <a href="https://medium.com/@jakek/my-year-with-a-distraction-free-iphone-and-how-to-start-your-own-experiment-6ff74a0e7a50"><h3>My year with distraction free iPhone</h3></a>
+            <a onclick="blog_checker.main.redirect('{{x.url}}'); return false;" href="#"><h3>{{x.title}}</h3></a>
         </div>
-        <div class="col-xs-4 text-center">
-            <a href="https://medium.com/@jakek/my-year-with-a-distraction-free-iphone-and-how-to-start-your-own-experiment-6ff74a0e7a50"><h3>My year with distraction free iPhone</h3></a>
-        </div>
-        <div class="col-xs-4 text-center">
-            <a href="https://medium.com/@jakek/my-year-with-a-distraction-free-iphone-and-how-to-start-your-own-experiment-6ff74a0e7a50"><h3>My year with distraction free iPhone</h3></a>
-        </div>
+        {% endfor %}
 
         <div class="row">
             <div class="col-xs-12 text-center">
@@ -78,11 +74,12 @@ Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve you
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-                Find us on <a href="http://timgallant.github.io">Github</a>.</p>
+                Find us on <a href="https://github.com/tgallant/blog-checker">Github</a>.</p>
             <div class="row">
                 <span class="glyphicon glyphicon-heart"></span>
                 <i class="icon-large icon-search"></i>
             </div>
         </div>
+        <script src="js/main.js" type="text/javascript"></script>
     </body>
 </html>
