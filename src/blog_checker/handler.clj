@@ -1,6 +1,5 @@
 (ns blog-checker.handler
   (:gen-class)
-  (:use [org.httpkit.server :only [run-server]])
   (:require [compojure.core :refer :all]
             [compojure.handler :as handler]
             [compojure.route :as route]
@@ -17,6 +16,3 @@
 
 (def app
   (handler/site app-routes))
-
-(defn -main []
-  (run-server app {:port 3001}))

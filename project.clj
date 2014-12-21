@@ -5,7 +5,6 @@
                  [org.clojure/clojurescript "0.0-2322"]
                  [prismatic/dommy "1.0.0"]
                  [compojure "1.1.8"]
-                 [http-kit "2.1.18"]
                  [selmer "0.6.9"]
                  [clj-http "1.0.0"]
                  [clj-time "0.8.0"]
