@@ -9,8 +9,6 @@
                  [clj-http "1.0.0"]
                  [clj-time "0.8.0"]
                  [cheshire "5.3.1"]]
-  
-  :uberjar {:aot [blog-checker.handler]}
 
   :plugins [[lein-ring "0.8.11"]
             [lein-cljsbuild "1.0.4-SNAPSHOT"]]
@@ -28,4 +26,5 @@
   :ring {:handler blog-checker.handler/app :port 3001}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                        [ring-mock "0.1.5"]]}})
+                        [ring-mock "0.1.5"]]}
+   :uberjar {:aot [blog-checker.handler]}})
