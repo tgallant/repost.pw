@@ -59,8 +59,6 @@
                       (Long. (.replaceAll (.replaceAll (str (get-in x [:data :created_utc])) "E9" "000") "[.]" "")))
         reddit-min-date (c/from-long (apply min reddit-date))
         hn-min-date (apply min hn-date)]
-    (println reddit-date)
-    (println reddit-min-date)
     (if (t/after? reddit-min-date hn-min-date)
       "Hacker News had this story first!"
       "reddit had this story first!")))
