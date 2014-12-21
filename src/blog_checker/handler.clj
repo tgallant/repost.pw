@@ -1,4 +1,5 @@
 (ns blog-checker.handler
+  (:gen-class)
   (:use [org.httpkit.server :only [run-server]])
   (:require [compojure.core :refer :all]
             [compojure.handler :as handler]
