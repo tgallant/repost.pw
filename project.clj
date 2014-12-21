@@ -10,6 +10,8 @@
                  [clj-http "1.0.0"]
                  [clj-time "0.8.0"]
                  [cheshire "5.3.1"]]
+  
+  :main blog-checker.handler
 
   :plugins [[lein-ring "0.8.11"]
             [lein-cljsbuild "1.0.4-SNAPSHOT"]]
