@@ -3,7 +3,9 @@
   :url "http://stats.timgallant.us"
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojurescript "0.0-2322"]
+                 [prismatic/dommy "1.0.0"]
                  [compojure "1.1.8"]
+                 [http-kit "2.1.18"]
                  [selmer "0.6.9"]
                  [clj-http "1.0.0"]
                  [clj-time "0.8.0"]
@@ -22,7 +24,7 @@
                                    :optimizations :advanced
                                    :pretty-print true}}]}
 
-  :ring {:handler blog-checker.handler/app}
+  :ring {:handler blog-checker.handler/app :port 3001}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                         [ring-mock "0.1.5"]]}})

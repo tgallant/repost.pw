@@ -6,8 +6,10 @@
             [blog-checker.utils :refer [get-info get-stories]]))
 
 (defroutes app-routes
-  (GET "/" [] (get-stories))
-  (POST "/" [url] (get-info url))
+  (GET "/" {params :params}
+    (if (nil? (:url params))
+      (get-stories)
+      (get-info (:url params))))
   (route/resources "/")
   (route/not-found "Not Found"))
 

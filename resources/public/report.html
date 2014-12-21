@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
@@ -12,65 +12,58 @@
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+  </head>
+  <body>
     <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser.
 Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
     <!-- Add your site or application content here -->
+
     <div class="container">
-        <div class="jumbotron">
-            <h1>Article lookup for HN and reddit</h1>
-            <form role="form" method="post">
-                <div class="form-group">
-                    <input class="form-control" type="URL" name="url" placeholder="Enter in you URL here" required autofocus>
-                </div>
-                <button class="btn btn-warning btn-lg" id="submit" type="submit">Submit</button>
-            </form>
-        </div>
+      <center><h2>Results for <a href="{{url}}">{{url}}</a></h2><hr></center>
+      <center><h2>{{posted_first}}</h2></center>
     </div>
-    <center><h2>Results for <a href="{{url}}">{{url}}</a></h2><hr></center>
-    <center><h2>{{posted_first}}</h2></center>
-    <div class="row-fluid">
-        <div class="col-md-6" style="padding-left:20px">
-            <p><a href="https://news.ycombinator.com"><img src="img/hn.png" width="50" alt="Hacker News!"></a></p>
-            {% ifequal created_at sentiment %}
-            <p>This link has not been posted to hacker news</p>
-            {% else %}
-            <p><b>Created at</b>: {{created_at}}</p>
-            <p><b>Title</b>: {{hn.title}}</p>
-            <p><b>Author</b>: {{hn.author}}</p>
-            <p><b>Number of points</b>: {{hn.points}}</p>
-            <p><b>Number of comments</b>: {{hn.num_comments}}</p>
-            <p><b>Average comment sentiment</b>: {{sentiment}}</p>
-            <p><a href="{{hn-url}}">Link to comments</a></p>
-            {% endifequal %}
+    <div id="results" class="row-fluid container" style="">
+      <div class="col-md-6" style="padding-left:20px;">
+        <p><a href="https://news.ycombinator.com"><img src="/img/hn.png" width="50" alt="Hacker News!"></a></p>
+        {% ifequal created_at sentiment %}
+        <p>This link has not been posted to hacker news</p>
+        {% else %}
+        <p><b>Created at</b>: {{created_at}}</p>
+        <p><b>Title</b>: {{hn.title}}</p>
+        <p><b>Author</b>: {{hn.author}}</p>
+        <p><b>Number of points</b>: {{hn.points}}</p>
+        <p><b>Number of comments</b>: {{hn.num_comments}}</p>
+        <p><b>Average comment sentiment</b>: {{sentiment}}</p>
+        <p><a href="{{hn-url}}">Link to comments</a></p>
+        {% endifequal %}
+      </div>
+      <div class="col-md-6" sytle="padding-right:20px">
+        <p><a href="http://reddit.com"><img src="/img/reddit.png" width="50" alt="Reddit!"></a></p>
+        {% ifequal reddit-count "0" %}
+        <p>This link has not been posted to reddit.</p>
+        {% else %}
+        <p><b>Times posted to reddit</b>: {{reddit-count}}</p>
+        {% for x in reddit %}
+        <div>
+          <p><b>Created at</b>: {{x.data.created_utc|reddit-date}}</p>
+          <p><b>Title</b>: {{x.data.title}}</p>
+          <p><b>Author</b>: {{x.data.author}}</p>
+          <p><b>Subreddit</b>: {{x.data.subreddit}}</p>
+          <p><b>Net Upvotes</b>: {{x.data.score}}</p>
+          <p><b>Number of comments</b>: {{x.data.num_comments}}</p>
+          <p><a href="http://www.reddit.com{{x.data.permalink}}">Link to comments</a></p>
         </div>
-        <div class="col-md-6" sytle="padding-right:20px">
-            <p><a href="http://reddit.com"><img src="img/reddit.png" width="50" alt="Reddit!"></a></p>
-            {% ifequal reddit-count "0" %}
-            <p>This link has not been posted to reddit.</p>
-            {% else %}
-            <p><b>Times posted to reddit</b>: {{reddit-count}}</p>
-            {% for x in reddit %}
-            <div>
-                <p><b>Created at</b>: {{x.data.created_utc|reddit-date}}</p>
-                <p><b>Title</b>: {{x.data.title}}</p>
-                <p><b>Author</b>: {{x.data.author}}</p>
-                <p><b>Subreddit</b>: {{x.data.subreddit}}</p>
-                <p><b>Net Upvotes</b>: {{x.data.score}}</p>
-                <p><b>Number of comments</b>: {{x.data.num_comments}}</p>
-                <p><a href="http://www.reddit.com{{x.data.permalink}}">Link to comments</a></p>
-            </div>
-            <hr>
-            {% endfor %}
-            {% endifequal %}
-        </div>
+        <hr>
+        {% endfor %}
+        {% endifequal %}
+      </div>
     </div>
-</body>
+    <script src="/js/main.js" type="text/javascript"></script>
+  </body>
 </html>

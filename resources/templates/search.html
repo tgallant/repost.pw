@@ -1,0 +1,23 @@
+<div id="searchbox" class="container section">
+  <h1>Repost Watch</h1>
+  <form role="form" onsubmit="return false">
+    <div>
+      <input class="form-control" id="inputForm" type="URL" name="url" placeholder="Enter in you URL here" required autofocus>
+    </div>
+    <button class="btn btn-warning btn-lg" id="submit" type="submit" onclick="blog_checker.main.submit_handler();">Submit</button>
+  </form>
+  {% if not any stories %}
+  {% else %}
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <h2>Need help? try these links.</h2>
+    </div>
+  </div>
+
+  {% for x in stories %}
+  <div class="col-xs-4 text-center">
+    <a onclick="blog_checker.main.redirect('{{x.url}}'); return false;" href="javascript:void(0);"><h3>{{x.title}}</h3></a>
+  </div>
+  {% endfor %}
+  {% endif %}
+</div>

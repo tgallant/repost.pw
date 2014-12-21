@@ -1,0 +1,45 @@
+{% extends "templates/base.html" %}
+{% block content %}
+{% include "templates/search.html" %}
+
+<div id="results" class="row-fluid container section">
+  <center><h2>Results for <a href="{{url}}">{{url}}</a></h2><hr></center>
+  <center><h2>{{posted_first}}</h2></center>
+  <div class="col-md-6" style="padding-left:20px;">
+    <p><a href="https://news.ycombinator.com"><img src="/img/hn.png" width="50" alt="Hacker News!"></a></p>
+    {% ifequal hn-count "0" %}
+    <p>This link has not been posted to hacker news</p>
+    {% else %}
+    {% for x in hn %}
+    <p><b>Created at</b>: {{x.created_at}}</p>
+    <p><b>Title</b>: {{x.title}}</p>
+    <p><b>Author</b>: {{x.author}}</p>
+    <p><b>Number of points</b>: {{x.points}}</p>
+    <p><b>Number of comments</b>: {{x.num_comments}}</p>
+    <p><a href="{{x|hn-url}}">Link to comments</a></p>
+    <hr>
+    {% endfor %}
+    {% endifequal %}
+  </div>
+  <div class="col-md-6" sytle="padding-right:20px">
+    <p><a href="http://reddit.com"><img src="/img/reddit.png" width="50" alt="Reddit!"></a></p>
+    {% ifequal reddit-count "0" %}
+    <p>This link has not been posted to reddit.</p>
+    {% else %}
+    <p><b>Times posted to reddit</b>: {{reddit-count}}</p>
+    {% for x in reddit %}
+    <div>
+      <p><b>Created at</b>: {{x.data.created_utc|reddit-date}}</p>
+      <p><b>Title</b>: {{x.data.title}}</p>
+      <p><b>Author</b>: {{x.data.author}}</p>
+      <p><b>Subreddit</b>: {{x.data.subreddit}}</p>
+      <p><b>Net Upvotes</b>: {{x.data.score}}</p>
+      <p><b>Number of comments</b>: {{x.data.num_comments}}</p>
+      <p><a href="http://www.reddit.com{{x.data.permalink}}">Link to comments</a></p>
+    </div>
+    <hr>
+    {% endfor %}
+    {% endifequal %}
+  </div>
+</div>
+{% endblock %}
