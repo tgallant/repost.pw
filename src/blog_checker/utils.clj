@@ -8,6 +8,18 @@
             [clj-time.format :as f]
             [clj-time.coerce :as c]))
 
+(defn min-date [date-vec]
+  (defn date-iter [vec]
+    (if (= 1 (count vec))
+      (nth vec 0)
+      (if (t/after? (nth vec 0) (nth vec 1))
+        (date-iter (subvec vec 1))
+        (date-iter (assoc (subvec vec 2) 0 (nth vec 0))))))
+    (date-iter date-vec))
+
+(defn parse-epoch [s]
+  (t/plus (t/epoch) (t/seconds s)))
+
 (defn get-link
   [link]
   (client/get
@@ -56,10 +68,11 @@
   (let [hn-date (for [x hn]
                   (f/parse (get x :created_at)))
         reddit-date (for [x reddit]
-                      (Long. (.replaceAll (.replaceAll (str (get-in x [:data :created_utc])) "E9" "000") "[.]" "")))
-        reddit-min-date (c/from-long (apply min reddit-date))
-        hn-min-date (apply min hn-date)]
-    (if (t/after? reddit-min-date hn-min-date)
+                      (parse-epoch (get-in x [:data :created_utc])))
+        hn-vec (into [] reddit-date)
+        reddit-vec (into [] hn-date)]
+    (println reddit-date)
+    (if (t/after? (min-date reddit-vec) (min-date hn-vec))
       "Hacker News had this story first!"
       "reddit had this story first!")))
 
@@ -67,7 +80,7 @@
   (let [stories (client/get "http://hn.algolia.com/api/v1/search_by_date?tags=story&numericFilters=points>20&hitsPerPage=3")]
     (render-file "templates/index.html" {:stories (get (parse-string (get stories :body) true) :hits)})))
 
-(add-filter! :reddit-date #(parse-reddit-date %))
+(add-filter! :reddit-date #(parse-epoch %))
 (add-filter! :hn-url #(get-url %))
 
 (defn posted-handler [hn-vec reddit-vec]
