@@ -5,10 +5,15 @@
                  [org.clojure/clojurescript "0.0-2322"]
                  [prismatic/dommy "1.0.0"]
                  [compojure "1.1.8"]
+                 [http-kit "2.1.16"]
                  [selmer "0.6.9"]
                  [clj-http "1.0.0"]
                  [clj-time "0.8.0"]
                  [cheshire "5.3.1"]]
+
+  :main blog-checker.handler
+
+  :aot [blog-checker.handler]
 
   :plugins [[lein-ring "0.8.11"]
             [lein-cljsbuild "1.0.4-SNAPSHOT"]]
@@ -27,4 +32,5 @@
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                         [ring-mock "0.1.5"]]}
-   :uberjar {:aot [blog-checker.handler]}})
+  :uberjar {:main blog-checker.handler
+             :aot [blog-checker.handler]}})
